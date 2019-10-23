@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"错误：没有测试脚本\" && exit 1"
   },
   "author": "yyj4399",
   "license": "MIT",
