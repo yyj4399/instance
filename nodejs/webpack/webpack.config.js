@@ -1,13 +1,21 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// 引入插件-清理
-// 注意，文档上的引入写法已废弃，会出bug
+// 注意，文档上的引入写法已废弃，会报错
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
     app: './src/index.js',
     print: './src/print.js'
+  },
+  // 开发工具，用于追踪报错堆栈
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    // 启用gzip压缩
+    // compress: true,
+    port: 4000
   },
   plugins: [
     // 插件-清理
@@ -19,7 +27,11 @@ module.exports = {
     })
   ],
   output: {
+    // 生成后的js文件名称
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    // 生成文件路径
+    path: path.resolve(__dirname, 'dist'),
+    // 确保文件资源能够在webServer中正常访问
+    publicPath: '/'
   }
 };
