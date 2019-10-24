@@ -9,7 +9,9 @@ module.exports = {
   entry: {
     app: './src/index.js'
   },
-  // 开发工具，用于追踪报错堆栈
+  // 模式 1. 生产模式: production
+  // mode: "production",
+  // 开发工具，用于追踪报错堆栈，否则被打包后无法追溯源代码位置
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.join(__dirname, "dist"),
@@ -33,6 +35,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     // 插件-生成html
     new HtmlWebpackPlugin({
+      // html属性
       title: '输出管理'
     }),
     // 插件-查看要修补(patch)的依赖

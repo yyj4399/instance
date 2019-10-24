@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "webpack实例https://www.webpackjs.com/guides/",
   "private": true,
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "start": "node ./server.js",
     "dev": "webpack-dev-server --open",
