@@ -1,7 +1,7 @@
 {
   "name": "webpack",
   "version": "1.0.0",
-  "description": "webpack instance",
+  "description": "webpack实例https://www.webpackjs.com/guides/",
   "private": true,
   "scripts": {
     "build": "webpack",
