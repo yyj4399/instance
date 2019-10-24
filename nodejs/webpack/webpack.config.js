@@ -3,11 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 注意，文档上的引入写法已废弃，会报错
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    app: './src/index.js',
-    print: './src/print.js'
+    app: './src/index.js'
   },
   // 开发工具，用于追踪报错堆栈
   devtool: 'inline-source-map',
@@ -15,7 +15,17 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     // 启用gzip压缩
     // compress: true,
-    port: 4000
+    port: 3000,
+    // 模块热替换
+    hot: true
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
   },
   plugins: [
     // 插件-清理
@@ -24,7 +34,11 @@ module.exports = {
     // 插件-生成html
     new HtmlWebpackPlugin({
       title: '输出管理'
-    })
+    }),
+    // 插件-查看要修补(patch)的依赖
+    new webpack.NamedModulesPlugin(),
+    // 插件-模块热替换
+    new webpack.HotModuleReplacementPlugin()
   ],
   output: {
     // 生成后的js文件名称
