@@ -1,16 +1,15 @@
 import _ from 'lodash';
-import './style.css';
-import Avatar from './avatar.jpeg';
+import printMe from './print';
 
 function component () {
   var element = document.createElement('div');
 
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
 
-  var myAvatar = new Image();
-  myAvatar.src = Avatar;
-  element.appendChild(myAvatar);
+  var btn = document.createElement('button');
+  btn.innerHTML = '点我';
+  btn.onclick = printMe;
+  element.appendChild(btn);
 
   return element;
 }
