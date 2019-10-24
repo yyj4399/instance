@@ -7,10 +7,12 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    app: './src/index.js'
+    // app: './src/index.js'
+    // 为什么用绝对路径？用相对路径会让人迷惑
+    app: path.resolve(__dirname, '../src/index.js')
   },
-  // 模式 1. 生产模式: production
-  // mode: "production",
+  // 模式 1. 开发模式: development 2. 生产模式: production
+  // mode: "development",
   // 开发工具，用于追踪报错堆栈，否则被打包后无法追溯源代码位置
   devtool: 'inline-source-map',
   devServer: {
