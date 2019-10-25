@@ -7,14 +7,23 @@ module.exports = {
   entry: {
     // app: './src/index.js'
     // 为什么用绝对路径？用相对路径会让人迷惑
-    app: path.resolve(__dirname, '../src/index.js'),
-    another: path.resolve(__dirname, '../src/another-module.js')
+    index: path.resolve(__dirname, '../src/index.js')
   },
   module: {
     rules: [
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       }
     ]
   },
@@ -31,6 +40,7 @@ module.exports = {
   ],
   output: {
     filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
     // 生成的js文件等变更为相对路径
     publicPath: './',
